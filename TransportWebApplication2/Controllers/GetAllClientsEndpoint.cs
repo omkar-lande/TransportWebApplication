@@ -1,5 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using TransportModel.DTO;
+using TransportModel.Model;
 using TransportModel.Queries;
 
 namespace TransportWebApplication.Controllers
@@ -33,14 +35,35 @@ namespace TransportWebApplication.Controllers
             {
                 var query = new GetAllClientsQuery();
                 var clients = await _mediator.Send(query);
-                return Ok(clients);
+
+                var response = new ApiResponse<IEnumerable<ClientDTO>> 
+                {
+                    StatusCode = 200,
+                    Status = "Success",
+                    Success = true,
+                    Error = null,
+                    Message = "Clients retrieved successfully",
+                    Data = clients
+                };
+
+                return Ok(response);
+                //return Ok(clients);
             }
             catch (Exception ex)
             {
-                // Handle any exceptions and return an error response
-                return BadRequest(ex.Message);
+                var response = new ApiResponse<IEnumerable<ClientDTO>> 
+                {
+                    StatusCode = 400, // Bad Request status code
+                    Status = "Error",
+                    Success = false,
+                    Error = ex.Message,
+                    Message = "An error occurred while processing your request"
+                };
+                return BadRequest(response);
             }
         }
+
+       
     }
 }
 

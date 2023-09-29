@@ -64,14 +64,14 @@ using TransportModel.Model;
 
 namespace TransportModel.Handlers
 {
-    public class UpdateTransporterToInstructionProductCommand : IRequest<bool>
-    {
-      // public List<InstructionProductUpdateDTO> UpdateDTOs { get; set; }
-       public List<InstructionProductUpdateDTO> UpdateDTO = new List<InstructionProductUpdateDTO>();
-    }
+    //public class UpdateTransporterToInstructionProductCommand : IRequest<bool>
+    //{
+    //  // public List<InstructionProductUpdateDTO> UpdateDTOs { get; set; }
+    //   public List<InstructionProductUpdateDTO> UpdateDTO = new List<InstructionProductUpdateDTO>();
+    //}
 
 
-    public class AddTransporterToInstructionProductCommandHandler : IRequestHandler<UpdateTransporterToInstructionProductCommand, bool>
+    public class AddTransporterToInstructionProductCommandHandler : IRequestHandler<AddTransporterToInstructionProductCommand, bool>
     {
         private readonly ApplicationDbContext _context;
 
@@ -80,9 +80,9 @@ namespace TransportModel.Handlers
             _context = context;
         }
        // List<InstructionProductUpdateDTO> UpdateDTO = new List<InstructionProductUpdateDTO>();
-        public async Task<bool> Handle(UpdateTransporterToInstructionProductCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(AddTransporterToInstructionProductCommand request, CancellationToken cancellationToken)
         {
-            foreach (var updateDTO in request.UpdateDTO)
+            foreach (var updateDTO in request.TransporterProducts)
             {
                 var instructionProduct = await _context.InstructionProduct.FindAsync(updateDTO.InstructionProductId);
 
@@ -104,11 +104,11 @@ namespace TransportModel.Handlers
                     instructionProduct.TransporterId = updateDTO.TransporterId.Value;
                 }
 
-                await _context.SaveChangesAsync(cancellationToken);
+                //await _context.SaveChangesAsync(cancellationToken);
             }
 
-            await _context.SaveChangesAsync(cancellationToken);
-
+            await _context.SaveChangesAsync();
+            
             return true;
         }
     }

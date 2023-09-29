@@ -175,6 +175,11 @@ namespace TransportModel.Handlers
 
                 var updatedInstructions = new ChangeStatusDTO();
 
+
+                if(pendingInstructions==null)
+                {
+                    return false;
+                }
            
                 var productQuery = new GetInstructionProductQuery { Id = pendingInstructions.Id };
                 var productList = await _mediator.Send(productQuery);

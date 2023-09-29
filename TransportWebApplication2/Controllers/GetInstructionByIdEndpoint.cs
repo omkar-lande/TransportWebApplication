@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using TransportModel.Queries;
+using TransportModel.DTO;
+using TransportModel.Model;
 
 namespace TransportWebApplication2.Controllers
 {
@@ -37,15 +39,40 @@ namespace TransportWebApplication2.Controllers
 
                 if (instruction == null)
                 {
-                    return NotFound(); // Instruction not found
+                    var responseerror = new ApiResponse<ChangeStatusDTO>
+                    {
+                        StatusCode = 400,
+                        Status = "Error",
+                        Success = false,
+                        Error = "Instruction Not Found",
+                        Message = "An error occurred while processing your request"
+                    };
+                    return BadRequest(responseerror);
                 }
-
-                return Ok(instruction);
+                var response = new ApiResponse<InstructionNameDTO>
+                {
+                    StatusCode = 200,
+                    Status = "Success",
+                    Success = true,
+                    Error = null,
+                    Message = "Instructions retrieved successfully",
+                    Data = instruction,
+                };
+                return Ok(response);
+               
             }
             catch (Exception ex)
             {
                 // Handle any exceptions and return an error response
-                return BadRequest(ex.Message);
+                var response = new ApiResponse<ChangeStatusDTO>
+                {
+                    StatusCode = 400,
+                    Status = "Error",
+                    Success = false,
+                    Error = ex.Message,
+                    Message = "An error occurred while processing your request"
+                };
+                return BadRequest(response);
             }
         }
     }

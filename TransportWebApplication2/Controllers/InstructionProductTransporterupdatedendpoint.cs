@@ -111,8 +111,10 @@ namespace TransportModel.Handlers
 
 */
 
+using Azure;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client;
 using System;
 using System.Threading.Tasks;
 using TransportModel.Commands;
@@ -153,27 +155,74 @@ public class InstructionProductTransporterupdatedendpoint : ControllerBase
     }
     */
 
-
+    /// <summary>
+    /// This API allocate Transporter to  the Products.
+    /// </summary>
+    /// <remarks>
+    /// Allocate the Transporter Id and the Scheduled Date for the product.
+    /// </remarks>
+    /// <param name="updateDTO">
+    /// Take the Transporter Id and the Scheduled Date.
+    /// </param>
+    /// <returns> 200 success for successfully added the Transporter. </returns>
     [HttpPost("addTransporter")]
-    public async Task<bool> AddTransporterToInstructionProduct(InstructionProductUpdateListDTO request)
+    public async Task<IActionResult> AddTransporterToInstructionProduct(InstructionProductUpdateListDTO request)
     {
         // Create a list of commands for this operation
-        var commands = request.TransporterProducts.Select(update => new AddTransporterToInstructionProductCommand
-        {
-            UpdateDTO = update
-        }).ToList();
+        //var commands = request.TransporterProducts.Select(update => new AddTransporterToInstructionProductCommand
+        //{
+        //    UpdateDTO = update
+        //}).ToList();
 
         // Send the commands to the MediatR pipeline
-        var results = await Task.WhenAll(commands.Select(command => _mediator.Send(command)));
+        var productList = new AddTransporterToInstructionProductCommand { InstructionId = request.InstructionId, TransporterProducts = request.TransporterProducts };
+        var results = await _mediator.Send(productList);
 
-        if (results.All(result => result))
+        if (results != null)
         {
-            return true;
+
+            var changeStatusCommand = new ChangeStatusCommand { instructionid=request.InstructionId};
+            if (changeStatusCommand.instructionid != 0)
+            {
+                await _mediator.Send(changeStatusCommand);
+                var responsesucess = new ApiResponse<IEnumerable<ChangeStatusDTO>>
+                {
+                    StatusCode = 200,
+                    Status = "Success",
+                    Success = true,
+                    Error = null,
+                    Message = "Transporter Scheduled  successfully",
+                    Data = null,
+                };
+                return Ok(responsesucess);
+            }
+            var response = new ApiResponse<IEnumerable<ChangeStatusDTO>>
+            {
+                StatusCode = 400,
+                Status = "Error",
+                Success = false,
+                Error = "The instruction Id is not provided.",
+                Message = "An error occurred while updating the status of  your request"
+            };
+            return BadRequest(response);
         }
         else
         {
-            return false;
+            var response = new ApiResponse<IEnumerable<ChangeStatusDTO>>
+            {
+                StatusCode = 400,
+                Status = "Error",
+                Success = false,
+                Error = "No results found for particular request.",
+                Message = "An error occurred while processing your request"
+            };
+            return BadRequest(response);
         }
+
+        
+       
+
+
     }
 
 }

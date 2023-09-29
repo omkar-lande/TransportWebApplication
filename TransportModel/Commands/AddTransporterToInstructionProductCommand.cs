@@ -14,9 +14,10 @@ namespace TransportModel.Commands
          List<InstructionProductUpdateDTO> productList = new List<InstructionProductUpdateDTO>();
          productList.Add(singleProduct);
         */
-
-        public InstructionProductUpdateDTO UpdateDTO { get; set; }
-        public List<InstructionProductUpdateDTO> UpdateDTOs { get; set; } // Pluralized
+        public int InstructionId { get; set; }
+        public List<InstructionProductUpdateDTO> TransporterProducts { get; set; } // Pluralized
+        //public InstructionProductUpdateDTO UpdateDTO { get; set; }
+        //public List<InstructionProductUpdateDTO> UpdateDTOs { get; set; } // Pluralized
     }
 
 }

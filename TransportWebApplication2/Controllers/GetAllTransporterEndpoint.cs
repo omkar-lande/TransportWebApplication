@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using TransportModel.DTO;
 using TransportModel.Model;
 using TransportModel.Queries;
 
@@ -33,7 +34,16 @@ namespace TransportWebApplication.Controllers
             {
                 var query = new GetAllTransporterQuery();
                 var transporters = await _mediator.Send(query);
-                return Ok(transporters);
+                var response = new ApiResponse<IEnumerable<TransporterDTO>>
+                {
+                    StatusCode = 200,
+                    Status = "Success",
+                    Success = true,
+                    Error = null,
+                    Message = "Instructions retrieved successfully",
+                    Data = transporters,
+                };
+                return Ok(response);
             }
             catch (Exception ex)
             {

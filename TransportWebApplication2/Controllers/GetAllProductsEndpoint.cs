@@ -1,5 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using TransportModel.DTO;
+using TransportModel.Model;
 using TransportModel.Queries;
 
 [ApiController]
@@ -29,12 +31,29 @@ public class GetAllProductsEndpoint : ControllerBase
         {
             var query = new GetAllProductsQuery();
             var products = await _mediator.Send(query);
-            return Ok(products);
+            var response = new ApiResponse<IEnumerable<ProductDTO>>
+            {
+                StatusCode = 200,
+                Status = "Success",
+                Success = true,
+                Error = null,
+                Message = "Instructions retrieved successfully",
+                Data = products,
+            };
+            return Ok(response);
+           
         }
         catch (Exception ex)
         {
-            // Handle any exceptions and return an error response
-            return BadRequest(ex.Message);
+            var response = new ApiResponse<IEnumerable<ProductDTO>>
+            {
+                StatusCode = 400,
+                Status = "Error",
+                Success = false,
+                Error = ex.Message,
+                Message = "An error occurred while processing your request"
+            };
+            return BadRequest(response);
         }
     }
 }

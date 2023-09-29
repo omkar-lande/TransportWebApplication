@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TransportModel.Commands;
+using TransportModel.DTO;
+using TransportModel.Model;
 using TransportModel.Queries;
 
 namespace TransportWebApplication.Controllers
@@ -32,12 +34,29 @@ namespace TransportWebApplication.Controllers
             {
                 var query = new ChangeStatusCommand();
                 var transporterScheduled = await _mediator.Send(query);
-                return Ok(transporterScheduled);
+                var response = new ApiResponse<ChangeStatusDTO>
+                {
+                    StatusCode = 200,
+                    Status = "Success",
+                    Success = true,
+                    Error = null,
+                    Message = "Status Update successfully",
+                    Data = null,
+                };
+                return Ok(response);
+                
             }
             catch (Exception ex)
             {
-                // Handle any exceptions and return an error response
-                return BadRequest(ex.Message);
+                var response = new ApiResponse<InstructionDTO>
+                {
+                    StatusCode = 400,
+                    Status = "Error",
+                    Success = false,
+                    Error = ex.Message,
+                    Message = "An error  while updating the  Status."
+                };
+                return BadRequest(response);
             }
         }
     }

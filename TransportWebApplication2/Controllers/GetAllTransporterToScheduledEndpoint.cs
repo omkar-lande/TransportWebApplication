@@ -1,5 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using TransportModel.DTO;
+using TransportModel.Model;
 using TransportModel.Queries;
 
 namespace TransportWebApplication.Controllers
@@ -32,12 +34,28 @@ namespace TransportWebApplication.Controllers
             {
                 var query = new GetAllTransporterToScheduledQuery();
                 var TransporterScheduled = await _mediator.Send(query);
-                return Ok(TransporterScheduled);
+                var response = new ApiResponse<IEnumerable<GetTransporterScheduledDTO>>
+                {
+                    StatusCode = 200,
+                    Status = "Success",
+                    Success = true,
+                    Error = null,
+                    Message = "Instructions retrieved successfully",
+                    Data = TransporterScheduled,
+                };
+                return Ok(response);
             }
             catch (Exception ex)
             {
-                // Handle any exceptions and return an error response
-                return BadRequest(ex.Message);
+                var response = new ApiResponse<IEnumerable<GetTransporterScheduledDTO>>
+                {
+                    StatusCode = 400,
+                    Status = "Error",
+                    Success = false,
+                    Error = ex.Message,
+                    Message = "An error occurred while processing your request"
+                };
+                return BadRequest(response);
             }
         }
     }

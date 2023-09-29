@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using TransportModel.Queries;
+using TransportModel.DTO;
+using TransportModel.Model;
 
 namespace TransportWebApplication2.Controllers
 {
@@ -32,12 +34,28 @@ namespace TransportWebApplication2.Controllers
             {
                 var query = new GetAllInstructionsQuery();
                 var instructions = await _mediator.Send(query);
-                return Ok(instructions);
+                var response = new ApiResponse<IEnumerable<InstructionDTO>> 
+                {
+                    StatusCode = 200,
+                    Status = "Success",
+                    Success = true,
+                    Error = null,
+                    Message = "Instructions retrieved successfully",
+                    Data = instructions,
+                };
+                return Ok(response);
             }
             catch (Exception ex)
             {
-                // Handle any exceptions and return an error response
-                return BadRequest(ex.Message);
+                var response = new ApiResponse<IEnumerable<InstructionDTO>>
+                {
+                    StatusCode = 400, 
+                    Status = "Error",
+                    Success = false,
+                    Error = ex.Message,
+                    Message = "An error occurred while processing your request"
+                };
+                return BadRequest(response);
             }
         }
     }

@@ -33,23 +33,31 @@ namespace TransportModel.Handlers
 
         public async Task<bool> Handle(AddTransporterToInstructionProductCommand request, CancellationToken cancellationToken)
         {
+            try
             {
-                var command = new AddTransporterToInstructionProductCommand
+                foreach (var updateDTO in request.TransporterProducts)
                 {
-                    //InstructionProductId = instructionProductId,
-                    //UpdateDTO = updateDTO
-                };
+                    var instructionProduct = await _context.InstructionProduct.FindAsync(updateDTO.InstructionProductId);
 
-                var result = await _mediator.Send(command);
+                    if (instructionProduct != null)
+                    {
+                        // Update instructionProduct properties
+                        instructionProduct.ScheduledDate = updateDTO.ScheduledDate.Value;
+                        instructionProduct.TransporterId = updateDTO.TransporterId.Value;
+                    }
+                }
 
-                if (result)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                await _context.SaveChangesAsync();
+
+                // Perform additional actions if needed...
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception if necessary
+                // You might want to rollback the transaction or handle the error in another way
+                return false;
             }
         }
 
