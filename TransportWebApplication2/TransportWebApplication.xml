@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TransportWebApplication</name>
+    </assembly>
+    <members>
+        <member name="M:TransportWebApplication.Controllers.CreateTransporterEndpoint.CreateTransporter(TransportModel.DTO.TransporterScheduledDTO)">
+            <summary>
+            Scheduled the Transporter to Instruction.
+            </summary>
+            <remarks>
+            This API Scheduled the Transporter to the Particular product of an Instruction.
+            </remarks>
+            <param>
+            Take the TransporterId,InstructionProductId and the ScheduledDate as a Parameter.
+            </param>
+            <returns> 200 Ok status </returns>
+        </member>
+        <member name="M:TransportWebApplication.Controllers.GetAllClientsEndpoint.GetAllClients">
+             <summary>
+             This API will fetch all the clients from database.
+             </summary>
+             <remarks>
+             Client list is an array of Clients with its name and id.
+             </remarks>
+             <param>
+            
+             </param>
+             <returns> List of clients with name and its id </returns>
+        </member>
+        <member name="M:TransportWebApplication.Controllers.GetAllTransporterEndpoint.GetAllTransporter">
+             <summary>
+             This API will fetch all the Transporter from database.
+             </summary>
+             <remarks>
+             Transporter list is an array of Clients with its name and id.
+             </remarks>
+             <param>
+            
+             </param>
+             <returns> List of Transporter with name and its id </returns>
+        </member>
+        <member name="M:TransportWebApplication.Controllers.GetAllTransporterToScheduledEndpoint.GetAllTransporterScheduled">
+            <summary>
+            This API will fetch all the pending  Instruction in the database.
+            </summary>
+            <remarks>
+            
+            </remarks>
+            <param>
+            
+            </param>
+            <returns>  Retrieve the Instruction and the List of products associated to it which are pending to Scheduled.  </returns>
+        </member>
+        <member name="M:TransportWebApplication2.Controllers.CreateInstructionEndpoint.CreateInstruction(TransportModel.DTO.CreateInstructionDTO)">
+            <summary>
+            This API Create the  Instruction.
+            </summary>
+            <remarks>
+            Creating the instruction for Placing the order.
+            </remarks>
+            <param name="request"> 
+            This API needs The ClientId, PickupAddress, DeliveryAddress, productId and ProductQuantity To Create an Instruction.
+            </param>
+            <returns>200 ok status</returns>
+        </member>
+        <member name="M:TransportWebApplication2.Controllers.GetAllInstructionEndpoint.GetAllInstructions">
+            <summary>
+            This API will fetch all the Instruction from database.
+            </summary>
+            <remarks>
+            retrieve all the instruction from the Database.
+            </remarks>
+            <returns>  List of all Instruction with CreatedDate, ClientName, PickupAdress, DeliveryAdress and Status. </returns>
+        </member>
+        <member name="M:TransportWebApplication2.Controllers.GetInstructionByIdEndpoint.GetInstructionById(System.Int32)">
+            <summary>
+            This API will fetch all the Instruction base on Id from database.
+            </summary>
+            <remarks>
+            Retrieve the Instruction and their productList.
+            </remarks>
+            <param>
+            Take the InstructionId as a Parameter.
+            </param>
+            <returns> Returns the Instruction Which match with Id and the ProductList by ProductName, ProductQuantity and InstructionProductId. </returns>
+        </member>
+        <member name="M:GetAllProductsEndpoint.GetAllProducts">
+            <summary>
+            This API will fetch all the Products from database.
+            </summary>
+            <remarks>
+            Product list is an array of products with its name and id.
+            </remarks>
+            <param>
+            
+            </param>
+            <returns> List of Product with id, name and its Description. </returns>
+        </member>
+    </members>
+</doc>
