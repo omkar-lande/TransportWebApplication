@@ -29,7 +29,7 @@ builder.Services.AddSwaggerGen(c =>
     c.IncludeXmlComments(xmlPath); // This line includes the XML comments in Swagger
 });
 
-builder.Services.AddMediatR(Assembly.GetAssembly(typeof(AddTransporterToInstructionProductCommandHandler)));
+builder.Services.AddMediatR(Assembly.GetAssembly(typeof(UpdateTransporterToInstructionCommandHandler)));
 builder.Services.AddMediatR(Assembly.GetAssembly(typeof(CreateInstrucionCommand)));
 builder.Services.AddScoped<IRequestHandler<CreateInstrucionCommand, int>, CreateInstructionCommandHandler>();
 builder.Services.AddEndpointsApiExplorer();
