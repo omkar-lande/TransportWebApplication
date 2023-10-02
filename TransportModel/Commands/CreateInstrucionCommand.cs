@@ -14,11 +14,7 @@ namespace TransportModel.Commands
     public class CreateInstrucionCommand : IRequest<int>
     {
          public CreateInstructionDTO Instruction { get; set; }
-       // public Instruction Instruction { get; set; }
-
-        // public List<BillingProductTable> Products { get; set; }
-
-        //  public List<ProductList> Products { get; set; } // Collection of product information
+      
 
     }
 }

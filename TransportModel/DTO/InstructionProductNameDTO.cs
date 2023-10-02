@@ -19,8 +19,7 @@ namespace TransportModel.DTO
         public int InstructionId { get; set; }
 
         public DateTime? ScheduledDate { get; set; } 
-      // public int TransporterId { get; set; }
-
+      
        public string TransporterName { get; set; } 
     }
 }

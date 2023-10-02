@@ -8,11 +8,11 @@ namespace TransportWebApplication.Controllers
 {
     [ApiController]
     [Route("api/TransporterList")]
-    public class GetAllTransporterEndpoint: ControllerBase
+    public class GetAllTransportersEndpoint: ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public GetAllTransporterEndpoint(IMediator mediator)
+        public GetAllTransportersEndpoint(IMediator mediator)
         {
             _mediator = mediator;
         }

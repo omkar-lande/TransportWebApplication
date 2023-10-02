@@ -22,9 +22,9 @@ namespace TransportModel.Handlers
 
         public async Task<IEnumerable<InstructionDTO>> Handle(GetAllInstructionsQuery request, CancellationToken cancellationToken)
         {
-            // Retrieve all instructions from the database
+            
             var instructions = await _context.Instruction
-                .AsNoTracking() // Optional: Use AsNoTracking for read-only operations
+                .AsNoTracking() 
                 .OrderByDescending(i => i.Id)
                  .Select(c => new InstructionDTO
                  {
@@ -37,7 +37,7 @@ namespace TransportModel.Handlers
                  })
                 .ToListAsync();
 
-            // You can return the instructions directly or map them to a different model if needed
+            
             return instructions;
         }
     }

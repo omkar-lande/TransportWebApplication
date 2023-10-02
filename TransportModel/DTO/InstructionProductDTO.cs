@@ -11,10 +11,9 @@ namespace TransportModel.DTO
         public int InstructionProductId { get; set; }
         public int ProductId { get; set; }
 
-       // public string ProductName { get; set; }
+     
         public decimal ProductQuantity { get; set; }
         public int InstructionId { get; set; }
 
-       // public int TransporterId { get; set; }
     }
 }

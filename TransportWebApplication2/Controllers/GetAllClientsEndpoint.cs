@@ -47,13 +47,13 @@ namespace TransportWebApplication.Controllers
                 };
 
                 return Ok(response);
-                //return Ok(clients);
+               
             }
             catch (Exception ex)
             {
                 var response = new ApiResponse<IEnumerable<ClientDTO>> 
                 {
-                    StatusCode = 400, // Bad Request status code
+                    StatusCode = 400, 
                     Status = "Error",
                     Success = false,
                     Error = ex.Message,

@@ -9,7 +9,7 @@ namespace TransportModel.Data
 {
     public interface IInstructionDataAcess
     {
-        // Task<int> CreateInstructionAsync(Instruction Instruction);
+         Task<int> CreateInstructionAsync(Instruction Instruction);
         Task<int> CreateInstructionAsync(DateTime Instructiondate, string ClientName, string PickupAdress, string DeliveryAdress, int ClientId);
 
         Task<int?> GetClientIdByClientNameAsync(string clientName);

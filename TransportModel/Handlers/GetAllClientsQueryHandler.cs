@@ -29,12 +29,12 @@ namespace TransportModel.Handlers
         {
             // Retrieve all clients from the database
             var clients = await _context.Clients
-                .AsNoTracking() // Optional: Use AsNoTracking for read-only operations
+                .AsNoTracking() 
                 .Select(c => new ClientDTO
                 {
                     Id = c.Id,
                     Name = c.Name,
-                    // Map other properties as needed
+                   
                 })
                 .ToListAsync();
 

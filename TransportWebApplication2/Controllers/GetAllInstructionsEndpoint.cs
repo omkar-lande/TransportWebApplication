@@ -10,11 +10,11 @@ namespace TransportWebApplication2.Controllers
 {
     [ApiController]
     [Route("api/instructions")]
-    public class GetAllInstructionEndpoint : ControllerBase
+    public class GetAllInstructionsEndpoint : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public GetAllInstructionEndpoint(IMediator mediator)
+        public GetAllInstructionsEndpoint(IMediator mediator)
         {
             _mediator = mediator;
         }

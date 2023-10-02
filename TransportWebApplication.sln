@@ -5,7 +5,9 @@ VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransportWebApplication", "TransportWebApplication2\TransportWebApplication.csproj", "{76B409FE-431C-40A6-9436-FB283CACBD5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransportModel", "TransportModel\TransportModel.csproj", "{8C826015-CC41-4982-AAAC-3D34D074639D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransportModel", "TransportModel\TransportModel.csproj", "{8C826015-CC41-4982-AAAC-3D34D074639D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{640F1148-9933-4D26-8280-5865E7398506}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

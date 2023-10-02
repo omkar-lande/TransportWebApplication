@@ -37,10 +37,7 @@ namespace TransportModel.Handlers
                     TransporterName= _dbContext.Transporters.FirstOrDefault(x => x.Id == InstructionProduct.TransporterId).Name,
                    ScheduledDate=InstructionProduct.ScheduledDate,
                     //TransporterName=_dbContext.Transporters.FirstOrDefault(x=> x.Id== InstructionProduct.InstructionProductId).Name,
-                    //TransporterName = _dbContext.Transporters.FirstOrDefault(t => t.Id == InstructionProduct.)?.Name
-
-
-
+                    //TransporterName = _dbContext.Transporters.FirstOrDefault(t => t.Id == InstructionProduct.)?.Name,
                     //InstructionProductId = InstructionProduct.InstructionProductId,
                     //ProductId = InstructionProduct.ProductId,
                     // Quantity= InstructionProduct.Quantity,

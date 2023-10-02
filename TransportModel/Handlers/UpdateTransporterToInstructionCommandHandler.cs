@@ -16,13 +16,13 @@ using TransportModel.Data;
 namespace TransportModel.Handlers
 {
 
-    public class InstructionProductTransporterupdatedCommandHandler : IRequestHandler<AddTransporterToInstructionProductCommand, bool>
+    public class UpdateTransporterToInstructionCommandHandler : IRequestHandler<UpdateTransporterToInstructionCommand, bool>
     {
         private readonly IMediator _mediator;
         private readonly ApplicationDbContext _context;
         private readonly IInstructionDataAcess _instructionDataAccess;
 
-        public InstructionProductTransporterupdatedCommandHandler(IMediator mediator,
+        public UpdateTransporterToInstructionCommandHandler(IMediator mediator,
             ApplicationDbContext context,
             IInstructionDataAcess instructionDataAccess)
         {
@@ -31,7 +31,7 @@ namespace TransportModel.Handlers
             _instructionDataAccess = instructionDataAccess;
         }
 
-        public async Task<bool> Handle(AddTransporterToInstructionProductCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(UpdateTransporterToInstructionCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -49,14 +49,13 @@ namespace TransportModel.Handlers
 
                 await _context.SaveChangesAsync();
 
-                // Perform additional actions if needed...
+               
 
                 return true;
             }
             catch (Exception ex)
             {
-                // Log the exception if necessary
-                // You might want to rollback the transaction or handle the error in another way
+                
                 return false;
             }
         }

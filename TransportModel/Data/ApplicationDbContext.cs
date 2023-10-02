@@ -21,7 +21,7 @@ namespace TransportModel.Data
         public DbSet<Product> Product { get; set; }
         public DbSet<Instruction> Instruction { get; set; }
         public DbSet<InstructionProduct> InstructionProduct { get; set; }
-       // public DbSet<TransportScheduled> TransportScheduled { get; set; }
+      
         public DbSet<Transporter> Transporters { get; set; }
 
 
