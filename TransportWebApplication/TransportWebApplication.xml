@@ -52,7 +52,7 @@
             </param>
             <returns>  Retrieve the Instruction and the List of products associated to it which are pending to Scheduled.  </returns>
         </member>
-        <member name="M:TransportWebApplication2.Controllers.CreateInstructionEndpoint.CreateInstruction(TransportModel.DTO.CreateInstructionDTO)">
+        <member name="M:TransportWebApplication.Controllers.CreateInstructionEndpoint.CreateInstruction(TransportModel.DTO.CreateInstructionDTO)">
             <summary>
             This API Create the  Instruction.
             </summary>
@@ -64,7 +64,7 @@
             </param>
             <returns>200 ok status</returns>
         </member>
-        <member name="M:TransportWebApplication2.Controllers.GetAllInstructionEndpoint.GetAllInstructions">
+        <member name="M:TransportWebApplication.Controllers.GetAllInstructionEndpoint.GetAllInstructions">
             <summary>
             This API will fetch all the Instruction from database.
             </summary>
@@ -73,7 +73,7 @@
             </remarks>
             <returns>  List of all Instruction with CreatedDate, ClientName, PickupAdress, DeliveryAdress and Status. </returns>
         </member>
-        <member name="M:TransportWebApplication2.Controllers.GetInstructionByIdEndpoint.GetInstructionById(System.Int32)">
+        <member name="M:TransportWebApplication.Controllers.GetInstructionByIdEndpoint.GetInstructionById(System.Int32)">
             <summary>
             This API will fetch all the Instruction base on Id from database.
             </summary>

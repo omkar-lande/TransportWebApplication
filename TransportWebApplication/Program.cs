@@ -1,6 +1,5 @@
 
 
-
 using MediatR;
 using Ardalis.ApiEndpoints;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +10,7 @@ using TransportModel.Handlers;
 using TransportModel.Model;
 using TransportModel.Queries;
 using Microsoft.OpenApi.Models;
-using TransportWebApplication2.Controllers;
+using TransportWebApplication.Controllers;
 using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,7 +18,7 @@ var builder = WebApplication.CreateBuilder(args);
 
  builder.Services.AddMvc();
  builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefualtConnection"), b => b.MigrationsAssembly("TransportModel")));
-builder.Services.AddControllers();
+ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 builder.Services.AddSwaggerGen(c =>

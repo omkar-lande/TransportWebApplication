@@ -6,7 +6,7 @@ using TransportModel.Queries;
 using TransportModel.DTO;
 using TransportModel.Model;
 
-namespace TransportWebApplication2.Controllers
+namespace TransportWebApplication.Controllers
 {
     [ApiController]
     [Route("api/instructions")]

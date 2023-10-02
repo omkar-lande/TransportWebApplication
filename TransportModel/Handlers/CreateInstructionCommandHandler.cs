@@ -12,7 +12,7 @@ using TransportModel.Data;
 using TransportModel.DTO;
 using TransportModel.Model;
 
-namespace TransportWebApplication2.Controllers
+namespace TransportWebApplication.Controllers
 {
   
     public class CreateInstructionCommandHandler : IRequestHandler<CreateInstrucionCommand, int>
